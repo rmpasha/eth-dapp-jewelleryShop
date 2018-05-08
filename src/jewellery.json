@@ -1,0 +1,98 @@
+[
+  {
+    "id": 0,
+    "name": "Indian Gold Ring",
+    "picture": "images/gold-ring-300.jpg",
+    "type" : "Ring",
+    "material": "Gold",
+    "price": 0.30
+  },
+  {
+    "id": 1,
+    "name": "European Gold Chain",
+    "picture": "images/gold-chain-400.jpg",
+    "type" : "Chain",
+    "material": "Gold",
+    "price": 0.60
+  },
+  {
+    "id": 2,
+    "name": "Australian Necklace",
+    "picture": "images/gold-necklace-5000.jpg",
+    "type" : "Necklace",
+    "material": "Gold",
+    "price": 6.00
+  },
+  {
+    "id": 3,
+    "name": "Italian Stone",
+    "picture": "images/gold-stone-200.jpg",
+    "type" : "Stone",
+    "material": "Gold",
+    "price": 0.15
+  },
+  {
+    "id": 4,
+    "name": "Arabian Platinum Chain",
+    "picture": "images/platinum-chain-600.jpg",
+    "type": "Chain",
+    "material": "Platinum",
+    "price": 0.70
+  },
+  {
+    "id": 5,
+    "name": "Japanese Necklace",
+    "picture": "images/platinum-necklace-2600.jpg",
+    "type": "Necklace",
+    "material": "Platinum",
+    "price": 4.00
+  },
+  {
+    "id": 6,
+    "name": "Chinese White Ring",
+    "picture": "images/platinum-ring-450.jpg",
+    "type": "Ring",
+    "material": "Platinum",
+    "price": 0.50
+  },
+  {
+    "id": 7,
+    "name": "African Stone",
+    "picture": "images/platinum-stone-300.jpg",
+    "type": "Stone",
+    "material": "Platinum",
+    "price": 0.40
+  },
+  {
+    "id": 8,
+    "name": "SilverSpring Chain",
+    "picture": "images/silver-chain-200.jpg",
+    "type": "Chain",
+    "material": "Silver",
+    "price": 0.30
+  },
+  {
+    "id": 9,
+    "name": "Scotish Necklace",
+    "picture": "images/silver-necklace-2000.jpg",
+    "type": "Necklace",
+    "material": "Silver",
+    "price": 0.24
+  },
+  {
+    "id": 10,
+    "name": "Russian Ring",
+    "picture": "images/silver-ring-300.jpg",
+    "type": "Ring",
+    "material": "Silver",
+    "price": 0.74
+  },
+  {
+    "id": 11,
+    "name": "Jamaican Stone",
+    "picture": "images/silver-stone-400.jpg",
+    "type": "Stone",
+    "material": "Silver",
+    "price": 0.43
+  }
+]
