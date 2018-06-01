@@ -18,7 +18,7 @@ For the detail project work document, please see the file from above project fol
 
 -> Project Work on dapp development.pdf
 
-# NOTE: #
+# NOTE while using this site: #
 
 You might need reload to display the current ETH address of MetaMask
 
