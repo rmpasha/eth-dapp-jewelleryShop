@@ -20,10 +20,25 @@ App = {
       }
     });
 
+    ////////////////////////////Listening for selected account change every 100 millisecond//////////////
+    var curAccount = web3.eth.accounts[0];
+    var accountInterval = setInterval(function() {
+      if(web3.eth.accounts[0] !== curAccount) {
+        curAccount=web3.eth.accounts[0];
+        //updateInterface();
+        return App.displayAddressBalance();
+      }
+    },100);
+    /////////////////////////////////////////////////////////////////////////////
+
     return App.initWeb3();
   },
 
   initWeb3: function() {
+   
+    //Using Infura///////////////////////////////////////////////////////////////
+    //var web3 = new Web3(new Web3.providers.WebsocketProvider("wss://mainnet.infura.io/ws"));
+    /////////////////////////////////////////////////////////////////////////
     //Connecting to Network provider
     if(typeof web3 !== 'undefined') {
       //MetaMask connects from this block
@@ -31,8 +46,10 @@ App = {
       console.log("Automatically picked Provider: " + App.web3Provider);
     } else {
       //Forcing to connect Local Network if not defined from above block
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
-      console.log("Direct localhost Provider:" + App.web3Provider);
+      //App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+      //console.log("Direct localhost Provider:" + App.web3Provider);
+      Console.log("MetaMast or MIST has not been installed");
+      alert("Please installl Ethereum Browser (MIST or MetaMask)");
     }
 
     web3 = new Web3(App.web3Provider);
@@ -41,15 +58,7 @@ App = {
     var version = web3.version.api;
     console.log("Web3 API version : " + version); // "0.20.3"
 
-////////////////////////////Listening for selected account change//////////////
-var curAccount = web3.eth.accounts[0];
-var accountInterval = setInterval(function() {
-  if(web3.eth.accounts[0] !== curAccount) {
-    curAccount=web3.eth.accounts[0];
-    updateInterface();
-  }
-},100);
-/////////////////////////////////////////////////////////////////////////////
+
 
     /////////////////// To know Which Network Connected From MataMask //////////////////////
     web3.version.getNetwork((err,netId) => {
@@ -71,38 +80,13 @@ var accountInterval = setInterval(function() {
       }
     });
     ////////////////////////////////////////////////////////////////////////////////////////
-
-    ////////////////////////////////////Get MetaMask Current Address///////////////////////
-    web3.eth.getAccounts(function(error, accounts) {
-      if(error) {
-        console.log("Getting Account: " + error);
-      }
-      else {
-        var account = accounts[0];
-        $('#ethAddress').text(account);
-      }
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////Get Current Balance///////////////////////////////////////
-      //var balance = web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]));
-      //Above commented line doesn't work here, we need to use synchronous callback
-      //as below to get the balance of MetaMask Wallet Address
-      web3.eth.getBalance(account, function(error, result){
-        if(!error)  {
-          //console.log("Balance: " + result/1000000000000000000);
-          $('#ethBalance').text(result/1000000000000000000);
-        }
-        else
-          console.log("Error: " + error);
-      });
-    });
-  ////////////////////////////////////////////////////////////////////////////////////////
-
+    
   ////////////////////////////Get Block if need////////////////////////////////////////
   /*  web3.eth.getBlock(4, function(error, result){
     if(!error)
         console.log(JSON.stringify(result));
     else
-        console.error("GetBlock Error: " + error);
+        console.error("GetBlock Error: " + error); 
   });
   */
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +116,7 @@ var accountInterval = setInterval(function() {
        purchaseInstance = instance;
 
 //getAllBuyers return as view, use call method
-       return purchaseInstance.getAllBuyers.call();
+       return purchaseInstance.getAllBuyers.call(); 
      }).then(function(buyers){
        for(i=0;i<buyers.length;i++){
          if(buyers[i] !== '0x0000000000000000000000000000000000000000') {
@@ -142,6 +126,34 @@ var accountInterval = setInterval(function() {
      }).catch(function(err){
        console.log(err.message);
      });
+  },
+
+  //Function to display current eth address and it's balance
+  displayAddressBalance: function() {
+    ////////////////////////////////////Get MetaMask Current Address///////////////////////
+    web3.eth.getAccounts(function(error, accounts) {
+      if(error) {
+        console.log("Getting Account: " + error);
+      }
+      else {
+        var account = accounts[0];
+        $('#ethAddress').text(account);
+      }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////Get Current Balance///////////////////////////////////////
+      //var balance = web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]));
+      //Above commented line doesn't work here, we need to use synchronous callback 
+      //as below to get the balance of MetaMask Wallet Address
+      web3.eth.getBalance(account, function(error, result){
+        if(!error)  {
+          //console.log("Balance: " + result/1000000000000000000);
+          $('#ethBalance').text(result/1000000000000000000);
+        }
+        else
+          console.log("Error: " + error);
+      });
+    });
+  ////////////////////////////////////////////////////////////////////////////////////////
   },
 
   handlePurchase: function(event) {
@@ -155,7 +167,7 @@ var accountInterval = setInterval(function() {
       itemPrice=data[itemId].price;
        //console.log("Price from json: " + data[itemId].price);
     //});
-
+    
     var purchaseInstance;
     web3.eth.getAccounts(function(error, accounts) {
       if(error) {
